@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>aksblogs</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="rgb(255, 0, 102)">
+		<meta name="Keywords" content="Notepad,android app,android studio,notepad,sqlite,SQLite,XML,Android,Java,Web development,tutorials,programming,training,learning,primer,lessons,references,examples,source code,demos,tips">
+		<meta name="Description" content="Well organized and easy to understand Web building tutorials with lots of examples of how to use android studio,java,SQLite,sqlite,android and XML.">
+		<link rel="icon" type="image/png" href="/favicon.png">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/css/blog.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/aksblogs.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-color: rgb(255, 0, 102);border: rgb(255, 0, 102);">
+			<div class="container-fluid">
+		    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		     </button>
+			<ul class="logo">
+		    <li><a href="">logo</a></li>
+		    </ul>
+ 			</div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		    <div class="navbar-right">
+		      <ul class="nav ">
+		        <li class="active"><a href="/home"><span class="glyphicon glyphicon-home"> Home</a></li>
+        <li class="drop"><a href="javascript:void(0)"><span class="glyphicon glyphicon-pencil"> Blogs</a>
+          <div class="dropdown-content">
+            <a href="/home#android" style="padding: 10px ! important;">Android</a>
+            <!-- <a href="#" style="padding: 10px ! important;">Django</a> -->
+            <!-- <a href="#" style="padding: 10px ! important;">ML</a> -->
+          </div>
+        </li>
+        <li><a href="#contact"><span class="glyphicon glyphicon-user"> Contact</a></li>
+        <li><a href=" /signup"><span class="glyphicon glyphicon-pushpin"> About</a></li>  
+        <li><a href=" /signup"><span class="glyphicon glyphicon-send"> Subscribe</a></li> 
+		      </ul>
+		  	</div>
+		  </div>
+		</div>
+		  </nav>
+
+		<div class="sticky-container">
+		    <ul class="sticky">
+		        <li>
+		            <a href="#"><img src="/images/facebook.png" width="32" height="32"></a>
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/twitter.jpg" width="32" height="32"></a>            
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/google.png" width="32" height="32"></a>
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/linkedin.jpg" width="32" height="32"></a>
+		        </li>
+		    </ul>
+		</div>
+
+
+		 <div class="container-fluid bg-1">
+<!-- 		  <div class="container">-->
+	<div class="col-sm-1"></div>
+		<div class="col-sm-10">
+		<div class="jumbotron">
+		<img src="/images/android.jpg" class="img-circle" alt="aksr" style="float: left; margin: 0px 5px 5px 5px;">
+		  <h3>Music Player App</h3>
+		  <h4><p>We Are Future Engineers and tech lovers,We love to share our knowledge with everyone.This is our Blog and we try to solve the small problems by sharing knowledge with you all.</p></h4>
+
+		</div>
+		</div>
+	</div>
+		  
+		 <div class="container-fluid content bg-1">
+		 	<div class="col-sm-1"></div>
+		<div class="col-sm-8">
+			<div class="jumbotron">
+<!-- <u><h2>About</h2></u><br><br> -->
+<p>Hello Guys, In this tutorial ,we are going to learn how  to create a Simple music player Application.<br>
+	<br>
+	This Tutorial will contain tha following files in our project.<br><br>
+  1. Manifest.xml<br>
+	2. MainActivity.java<br>
+	3. Main2Activity.java<br>
+	4. activity_main.xml<br>
+	5. activity2_main.xml<br>
+	6. MediaServicePlayer.java<br>
+	7. recycler.xml<br><br>
+        In order to creating this application ,we are required to access the user's external storage.
+        So,First of all we are going to modify our manifest file by adding the <b>uses-permission</b> of <b>
+        READ_EXTERNAL_STORAGE</b>.
+        </p><br>
+<div>
+<pre>
+uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" 
+</pre>
+</div><br>
+<p>
+	<b>	Manifest.xml
+	</b>
+</p>
+<div>
+<pre><xmp>< ?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.example.arya.myapplication">
+
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+	<application
+		android:allowBackup="true"
+		android:icon="@drawable/wallpaper"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/AppTheme">
+		<activity
+			android:name=".MainActivity"
+			android:configChanges="orientation|screenSize">
+		</activity>
+		<service android:name=".MediaServiceClass" />
+
+		<activity android:name=".Main2Activity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+	</application>
+</manifest>
+</xmp></pre>
+</div>
+<p>
+Actually the above manifest tag will work fine in accessing the external storage for api versions below lollipop.
+But with the beginning of postlollipop devices ,we need to ask the permission during the runtime, So order to that we need add following code 
+to our Main2Activity.java file, which is our Launcher Activity. 
+				</p><br>
+				<br>
+				<div>
+<pre>
+<xmp>if (checkCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+	requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+}</xmp>
+</pre>
+				</div>
+				<br>
+				<p>
+					The Main2Activity will consist of list of mp3 files in RecyclerView with <b>activity2_main</b> as its layout file.
+
+				</p>
+				<br>
+				<p><b>Main2Activity.java</b></p>
+
+				<br>
+				<div>
+<pre>
+<xmp>package com.example.arya.myapplication;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.widget.SeekBar;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+								
+public class Main2Activity extends AppCompatActivity {
+	RecyclerView recyclerView;
+	File file;
+	AudioManager audioManager;
+  	byte[] data = null;
+	ArrayList<String> list, list2;
+	MyAdapter adapter;
+	int k = 0;
+							
+	@RequiresApi(api = Build.VERSION_CODES.M)
+	@Override
+  	protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main2);
+											
+	getSupportActionBar().setDisplayShowTitleEnabled(false);
+	getSupportActionBar().setDisplayShowCustomEnabled(true);
+  	getSupportActionBar().setCustomView(R.layout.action);
+	audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+											
+	if (checkCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) 
+	!= PackageManager.PERMISSION_GRANTED) 
+	{
+		requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+	}
+										
+  	recyclerView = (RecyclerView) findViewById(R.id.recycler);
+	if (savedInstanceState != null)
+	{
+		list = savedInstanceState.getStringArrayList("list");
+		list2 = savedInstanceState.getStringArrayList("list2");	
+	} 
+	else{											
+		list = new ArrayList<String>();
+		list2 = new ArrayList<String>();
+		try{
+			file = new File("/sdcard/");
+			} catch (NullPointerException e) {
+			Log.i("Exceptr", "NULLPOINTER");
+		}			
+		filer(file, list);				
+	}
+											
+	adapter = new MyAdapter(list2, list, Main2Activity.this);
+	recyclerView.setAdapter(adapter);
+											
+	GridLayoutManager gridLayoutManager = 
+	new GridLayoutManager(Main2Activity.this, 2);
+										
+	recyclerView.setLayoutManager(gridLayoutManager);						
+	}
+							
+	public void filer(File file, final List<String> list) {
+							
+		String[] list1 = file.list();
+		for (String i : list1) {
+					
+		File file1 = new File(file, i);
+			if (file1.isDirectory()) 
+			{
+				filer(file1, list);
+			}
+			else if (file1.getName().contains(".mp3")) 
+			{
+				list2.add(file1.getAbsolutePath());
+				list.add((String) file1.getName().subSequence(0,10));
+				Log.i("Arya Learn", file1.getAbsolutePath());
+			}
+		}					
+	}
+	@Override
+	protected void onDestroy(){
+	super.onDestroy();
+	}
+								
+	public boolean onCreateOptionsMenu(Menu menu) {
+	MenuInflater inflater=getMenuInflater();
+	inflater.inflate(R.menu.menu2,menu);
+	return  true;
+	}
+								
+	@Override
+	public void onSaveInstanceState (Bundle outState){
+		super.onSaveInstanceState(outState);
+		outState.putStringArrayList("list", list);
+	  	outState.putStringArrayList("list2", list2);
+	}
+								
+	@Override
+	public void onBackPressed() {
+	  	finishAndRemoveTask();
+		super.onBackPressed();
+	}
+}</xmp></pre>
+				</div>
+				<br>
+
+				<p>
+         <b>activity_main2.xml</b>
+				</p>
+				<br>
+<div>
+<pre><xmp>< ?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#c9d7c9"
+	tools:context=".Main2Activity">
+						
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/recycler"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_alignParentStart="true"
+		android:layout_alignParentTop="true"
+		android:layout_marginStart="0dp"
+		android:layout_marginTop="0dp" />
+</RelativeLayout></xmp></pre>
+</div>
+<img src="MusicList.jpg">
+				<br>
+				<p>
+					Then our MainActivity.java file in which we have our Music Player Controller layout, which consist of
+					control buttons like <b>play,pause,forward,backward</b>.Also the <b> MediaServiceClass</b> is the background service which will play the play the music in the background.
+
+				</p>
+				<br>
+				<p><b>MediaServiceClass.java</b></p>
+<div>
+<pre>
+<xmp>
+		package com.example.arya.myapplication;
+
+		import android.app.Service;
+		import android.content.BroadcastReceiver;
+		import android.content.Context;
+		import android.content.Intent;
+		import android.content.IntentFilter;
+		import android.media.MediaPlayer;
+		import android.os.Binder;
+		import android.os.IBinder;
+		import android.support.annotation.Nullable;
+		import android.util.Log;
+		
+		import java.io.IOException;
+		
+		public class MediaServiceClass extends Service {
+				MediaPlayer mediaPlayer;
+				String mediaFile;
+				BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+						@Override
+						public void onReceive(Context context, Intent intent) {
+								mediaPlayer.stop();
+								mediaPlayer.release();
+						}
+				};
+		
+		
+		
+				public class LocalBinder extends Binder
+				{
+						public MediaServiceClass getService()
+						{
+								return MediaServiceClass.this;
+						}
+				}
+		
+				IBinder binder=new LocalBinder();
+				@Nullable
+				@Override
+				public IBinder onBind(Intent intent) {
+						Log.i("MyLog","Binded");
+						return binder;
+		
+				}
+		
+				@Override
+				public int onStartCommand(Intent intent, int flags, int startId) {
+						mediaFile=intent.getStringExtra("song");
+						mediaPlayer=new MediaPlayer();
+						try {
+								mediaPlayer.setDataSource(mediaFile);
+						} catch (IOException e) {
+								e.printStackTrace();
+						}
+						try {
+								mediaPlayer.prepare();
+						} catch (IOException e) {
+								e.printStackTrace();
+						}
+						IntentFilter filter=new IntentFilter();
+						filter.addAction("ACTION_new_audio");
+						registerReceiver(broadcastReceiver,filter);
+						return super.onStartCommand(intent, flags, startId);
+		
+				}
+		
+				public void playMedia()
+				{
+		
+						mediaPlayer.start();
+						Log.i("MyLog","Played");
+				}
+				public void pauseMedia()
+				{
+						Log.i("MyLog","Paused");
+						mediaPlayer.pause();
+				}
+		
+				public void forward()
+				{
+						if(mediaPlayer.isPlaying())
+						{
+								if(mediaPlayer.getCurrentPosition()<(mediaPlayer.getDuration()-10000))
+								{
+										mediaPlayer.seekTo(mediaPlayer.getCurrentPosition()+10000);
+		
+								}
+								else
+								{
+										mediaPlayer.seekTo(mediaPlayer.getDuration());
+								}
+						}
+				}
+				public void backward()
+				{
+						if(mediaPlayer.isPlaying())
+						{
+								if(mediaPlayer.getCurrentPosition() < 10000)
+								{
+										mediaPlayer.seekTo(0);
+								}
+								else
+								{
+										mediaPlayer.seekTo(mediaPlayer.getCurrentPosition()-10000);
+								}
+						}
+				}
+				@Override
+				public boolean onUnbind(Intent intent) {
+						Log.i("MyLog","UnBinded");
+						return super.onUnbind(intent);
+				}
+		
+				@Override
+				public void onDestroy() {
+						mediaPlayer.pause();
+						mediaPlayer.release();
+						mediaPlayer=null;
+						super.onDestroy();
+				}
+		
+				public void seekTo(int position)
+				{
+						mediaPlayer.seekTo(position);
+				}
+		
+				public int mediaDuration()
+				{
+						return mediaPlayer.getDuration();
+				}
+		
+				public int currentPosition()
+				{
+						return mediaPlayer.getCurrentPosition();
+				}
+		
+				public boolean playing()
+				{
+						return mediaPlayer.isPlaying();
+				}
+		
+		}							
+							
+</xmp>
+							</pre>
+				</div>
+				<br>
+				<br>
+				<p>
+					<b>MainActivity.java</b>
+				</p>
+<div>
+<pre>
+<xmp>
+		package com.example.arya.myapplication;
+
+		import android.Manifest;
+		import android.content.ComponentName;
+		import android.content.Intent;
+		import android.content.ServiceConnection;
+		import android.content.pm.PackageManager;
+		import android.media.MediaPlayer;
+		import android.os.Build;
+		import android.os.Handler;
+		import android.os.IBinder;
+		import android.support.annotation.RequiresApi;
+		import android.support.v7.app.AppCompatActivity;
+		import android.os.Bundle;
+		import android.util.Log;
+		import android.view.Menu;
+		import android.view.MenuInflater;
+		import android.view.MenuItem;
+		import android.view.View;
+		import android.widget.Button;
+		import android.widget.ImageView;
+		import android.widget.SeekBar;
+		import android.widget.TextView;
+		
+		import java.io.File;
+		import java.sql.Timestamp;
+		import java.util.ArrayList;
+		import java.util.List;
+		
+		public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+				ImageView  replay,pause,play,forward;
+				Intent intent;
+				TextView textView;
+				boolean serviceBound = false;
+				ServiceConnection serviceConnection;
+				MediaServiceClass mediaServiceClass;
+				File file;
+				SeekBar seekBar;
+				Runnable run;
+				Handler handler;
+				@RequiresApi(api = Build.VERSION_CODES.M)
+				@Override
+				protected void onCreate(Bundle savedInstanceState) {
+						super.onCreate(savedInstanceState);
+						setContentView(R.layout.activity_main);
+						play = (ImageView) findViewById(R.id.play);
+						pause = (ImageView) findViewById(R.id.pause);
+						replay = (ImageView) findViewById(R.id.replay);
+						forward = (ImageView) findViewById(R.id.forward);
+						seekBar = (SeekBar) findViewById(R.id.seekBar);
+						textView= (TextView)findViewById(R.id.text);
+						intent = new Intent(MainActivity.this, MediaServiceClass.class);
+						intent.putExtra("song", getIntent().getStringExtra("song"));
+						replay.setOnClickListener(this);
+						forward.setOnClickListener(this);
+						play.setOnClickListener(this);
+						pause.setOnClickListener(this);
+						handler = new Handler();
+						serviceConnection =new ServiceConnection() {
+								@Override
+								public void onServiceConnected(ComponentName name, IBinder service) {
+										serviceBound=true;
+										mediaServiceClass=((MediaServiceClass.LocalBinder)service).getService();
+								}
+		
+								@Override
+								public void onServiceDisconnected(ComponentName name) {
+										serviceBound=false;
+								}
+						};
+		
+						new Handler().postDelayed(new Runnable() {
+								@Override
+								public void run() {
+										startService(intent);
+										bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+										serviceBound = true;
+		
+								}
+						}, 100);
+		
+						run=new Runnable() {
+								@Override
+								public void run() {
+										try {
+		
+												seekBar.setProgress((int) mediaServiceClass.currentPosition());
+												Timestamp timestamp=new Timestamp(mediaServiceClass.currentPosition());
+												textView.setText(timestamp.toString().substring(15,21));
+		
+										} catch (IllegalStateException e) {
+												e.printStackTrace();
+										}
+		
+		
+										handler.postDelayed(this, 30);
+		
+								}}
+								;
+		
+		
+				}
+		
+				@Override
+				public void onClick(View v) {
+						switch (v.getId())
+						{
+		
+								case R.id.play:
+										if(serviceBound)
+										{
+												mediaServiceClass.playMedia();
+												seekBar.setMax(mediaServiceClass.mediaDuration());
+												handler.postDelayed(run,30);
+												play.setEnabled(false);
+										}
+										break;
+								case R.id.pause:
+										if(serviceBound)
+										{
+												mediaServiceClass.pauseMedia();
+												pause.setEnabled(false);
+										}
+										break;
+								case R.id.forward:
+										if(serviceBound)
+										{
+												mediaServiceClass.forward();
+										}
+										break;
+								case R.id.replay:
+										if(serviceBound)
+												mediaServiceClass.backward();
+										break;
+						}
+				}
+		
+				@Override
+				public boolean onCreateOptionsMenu(Menu menu) {
+						MenuInflater inflater=getMenuInflater();
+						inflater.inflate(R.menu.menu,menu);
+						return  true;
+				}
+		
+				@Override
+				public boolean onOptionsItemSelected(MenuItem item) {
+						if(item.getItemId()==R.id.bind)
+						{
+								if(serviceBound)
+								{
+										unbindService(serviceConnection);
+										serviceBound=false;
+								}
+						}
+						else if(item.getItemId()==R.id.stop)
+						{
+								if(!serviceBound)
+										stopService(intent);
+						}
+						return true;
+				}
+		}								
+								
+</xmp>
+					</pre>
+				</div>
+				<p>
+					<b>activity_main.xml</b>
+				</p>
+				<br>
+<div>
+<pre>
+<xmp>
+		< ?xml version="1.0" encoding="utf-8"?>
+		<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:app="http://schemas.android.com/apk/res-auto"
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/wallpaper"
+				tools:context=".MainActivity">
+		
+				<TextView
+						android:id="@+id/text"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_above="@+id/seekBar"
+						android:layout_alignParentEnd="true"
+						android:layout_marginEnd="32dp"
+						android:textColor="#205809"
+						android:text="00:00" />
+		
+		
+				<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentBottom="true"
+						android:layout_centerHorizontal="true"
+						android:layout_marginBottom="28dp"
+						android:gravity="center"
+						android:orientation="horizontal">
+		
+						<ImageView
+								android:id="@+id/forward"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center"
+								android:padding="10dp"
+								app:srcCompat="@drawable/ic_replay_10_black_24dp" />
+		
+						<ImageView
+								android:id="@+id/play"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center"
+								android:padding="10dp"
+								app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+		
+						<ImageView
+								android:id="@+id/pause"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center"
+								android:padding="10dp"
+								app:srcCompat="@drawable/ic_pause_circle_outline_black_24dp" />
+		
+						<ImageView
+								android:id="@+id/replay"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center"
+								android:padding="10dp"
+								app:srcCompat="@drawable/ic_forward_10_black_24dp" />
+		
+				</LinearLayout>
+		
+				<SeekBar
+						android:id="@+id/seekBar"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_alignParentBottom="true"
+						android:layout_alignParentStart="true"
+						android:layout_marginBottom="123dp" />
+		</RelativeLayout>							
+</xmp>
+					</pre>
+				</div>
+				<br>
+				<br>
+				<p>
+					<b>
+						recycler.xml
+					</b>
+				</p>
+				<br>
+				<br>
+<div>
+<pre>
+<xmp>
+		< ?xml version="1.0" encoding="utf-8"?>
+		<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="wrap_content"
+				xmlns:app="http://schemas.android.com/apk/res-auto"
+				android:id="@+id/relative"
+				android:padding="10dp"
+				android:background="#c9d7c9"
+				xmlns:card_view="http://schemas.android.com/apk/res-auto"
+				android:layout_height="wrap_content">
+
+
+				<ImageView
+						android:id="@+id/imageView"
+						android:layout_width="180dp"
+						android:layout_height="194dp"
+						android:layout_alignParentStart="true"
+						android:layout_alignParentTop="true"
+						card_view:srcCompat="@drawable/wallpaper" />
+
+
+		<TextView
+				android:id="@+id/textView"
+				android:layout_width="169dp"
+				android:layout_height="wrap_content"
+				android:layout_alignStart="@+id/imageView"
+				android:layout_below="@+id/imageView"
+				android:layout_gravity="center"
+				android:fontFamily="sans-serif"
+				android:text="TextView"
+				android:textColor="#354d35"
+				android:textSize="20dp" />
+
+		</RelativeLayout>
+
+
+</xmp>
+					</pre>
+				</div>
+				<a href="/" id="prev">Previous</a>
+				<a href="/notepad/1" id="next">Next</a>
+			</div>
+		</div>
+		<div class="container-fluid bg-3 text-center">
+		    <!-- <div class="container"> -->
+		    	<div class="row">
+		    		<h2>More Posts</h2>
+					<div class="col-sm-3">
+						<a href="/notepad/1">
+						<img src="/images/android.jpg" class="img-circle" alt="aksr">
+						<h3>Notepad App</h3>
+						<h4><p>This is a basic notepad app tutorial for begineers and saving notes in a SQLite database.</p></h4>
+					</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- </div> -->
+<!-- </div> -->
+
+  	<div class="container-fluid bg-2">
+	    <div class="container">
+	      <form class="form" autocomplete="on" action="">
+	        <div class="form-group">
+	          <div class="col-sm-6">
+	          	<label><h2><u>Leave Your Comments</u>:</h2></label>
+	           <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://aksr-co-nf.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	          </div>
+	        <!-- <div class="col-xs-4">
+	          <label><h2><u>Subscribe Us</u>:</h2></label>
+	          <br>
+	            <label><h3>E-Mail:</h3></label>
+	            <input type="text" class="form-control" name="" placeholder="E-mail Address">   
+	            <br>
+	           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-send"></span> Subscribe</button>
+	           </div> -->
+	        </div>
+	      </form>
+	    </div>
+		</div>
+
+	<footer class="text-center">
+	    <div id="contact">
+	      <a class="up-arrow" href="#" data-toggle="tooltip" title="TO TOP">
+	        <span class="glyphicon glyphicon-chevron-up"></span>
+	      </a><br>
+	      <p><h2>Contact Us</h2>anupsingh.singh93@gmail.com</p> 
+	    </div>
+	</footer>
+		<div id="copyright"><p>AKSR © Copyright 2018,All rights reserved.</p></div>
+		<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		})
+		</script>	
+		<script id="dsq-count-scr" src="//aksr-co-nf.disqus.com/count.js" async></script>
+	</body>
+</html>

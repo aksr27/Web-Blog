@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>aksblogs</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="rgb(255, 0, 102)">
+		<meta name="Keywords" content="Notepad,android app,android studio,notepad,sqlite,SQLite,XML,Android,Java,Web development,tutorials,programming,training,learning,primer,lessons,references,examples,source code,demos,tips">
+		<meta name="Description" content="Well organized and easy to understand Web building tutorials with lots of examples of how to use android studio,java,SQLite,sqlite,android and XML.">
+        <link rel="icon" type="image/png" href="/favicon.png">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/css/blog.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/aksblogs.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-color: rgb(255, 0, 102);border: rgb(255, 0, 102);">
+			<div class="container-fluid">
+		    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		     </button>
+		      <ul class="logo">
+            <li><a href="">Logo</a></li>
+            </ul>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		    <div class="navbar-right">
+		      <ul class="nav ">
+		        <li><a href="/home"><span class="glyphicon glyphicon-home"> Home</a></li>
+        <li class="drop"><a href="javascript:void(0)"><span class="glyphicon glyphicon-pencil"> Blogs</a>
+          <div class="dropdown-content">
+            <a href="/home#android" style="padding: 10px ! important;">Android</a>
+            <!-- <a href="#" style="padding: 10px ! important;">Django</a> -->
+            <!-- <a href="#" style="padding: 10px ! important;">ML</a> -->
+          </div>
+        </li>
+        <li><a href="#contact"><span class="glyphicon glyphicon-user"> Contact</a></li>
+        <li><a href="/signup"><span class="glyphicon glyphicon-pushpin"> About</a></li>  
+        <li><a href="/signup"><span class="glyphicon glyphicon-send"> Subscribe</a></li>  
+		      </ul>
+		  	</div>
+		  </div>
+		</div>
+		  </nav>
+
+		<div class="sticky-container">
+		    <ul class="sticky">
+		        <li>
+		            <a href="#"><img src="/images/facebook.png" width="32" height="32"></a>
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/twitter.jpg" width="32" height="32"></a>            
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/google.png" width="32" height="32"></a>
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/linkedin.jpg" width="32" height="32"></a>
+		        </li>
+		    </ul>
+		</div>
+
+
+		 <div class="container-fluid bg-1">
+		  <!-- <div class="container"> -->
+		  <div class="col-sm-1"></div>
+		<div class="col-sm-10">
+		<div class="jumbotron">
+		<img src="/images/android.jpg" class="img-circle" alt="aksr" style="float: left; margin: 0px 5px 5px 5px;">
+		  <h3>Notepad App</h3>
+		  <h4><p>We Are Future Engineers and tech lovers,We love to share our knowledge with everyone.This is our Blog and we try to solve the small problems by sharing knowledge with you all.</p></h4>
+
+		</div>
+		</div>
+	</div>
+		<div class="container-fluid content bg-1">
+		  <div class="col-sm-1"></div>
+		<div class="col-sm-8">
+			<div class="jumbotron">
+<!-- <center><h2>About</h2></center><br><br> -->
+<p>Hello Guys, In this tutorial ,we are going to learn how to create a Simple Notepad Application.
+
+This Tutorial will contain tha following files in our project.
+<br>
+1. Manifest.xml<br>
+2. MainActivity.java<br>
+3. EditActivity.java<br>
+4. NewActivity.java<br>
+5. DisplayActivity.java<br>
+6. Database.java<br>
+7. toolbar_layout.xml<br>
+8. activity_main.xml<br>
+9. activity_edit.xml<br>
+10. activity_new.xml<br>
+11. activity_display.xml<br>
+<br></p>
+<p><b>AndroidManifest.xml</b></p>
+<div>
+	<pre><xmp>< ?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.anuprathore.texteditor">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_image"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_image"
+        android:supportsRtl="true"
+        android:theme="@style/NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".DisplayActivity"/>
+        <activity android:name=".EditActivity"/>
+        <activity android:name=".NewActivity"></activity>
+    </application>
+
+</manifest></xmp></pre>
+</div>
+<p><b>toolbar_layout.xml</b></p>
+<pre><xmp>< ?xml version="1.0" encoding="utf-8" ?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height=" ?attr/actionBarSize"
+    android:background="#FFC7BB72"
+    app:theme="@style/NoActionBar">
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Notepad"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+</android.support.v7.widget.Toolbar></xmp></pre>
+<p><b>ActivityMain.xml</b></p>
+<pre><xmp>< ?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.anuprathore.texteditor.MainActivity"
+    tools:ignore="ExtraText">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="15dp"
+        android:text="AddNew"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:background="@android:color/white"
+        />
+</RelativeLayout>
+</xmp></pre>
+<p><b>activity_display.xml</b></p>
+<pre><xmp>< ?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.anuprathore.texteditor.DisplayActivity">
+
+    <include
+        android:id="@+id/toolbar1"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/back"
+        android:layout_alignBottom="@+id/back"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="21dp"
+        android:text="Edit"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar1"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar1"
+        app:layout_constraintVertical_bias="0.015"/>
+
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="14dp"
+        android:text="Back"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="16dp"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/header"
+        android:background="#FFE0DBBE"
+        android:textColor="#FF945003"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar1"
+        android:background="#FFCFC68B"
+        android:paddingVertical="5dp"
+        android:text="New Note"
+        android:textAlignment="center"
+        android:textColor=" ?android:attr/colorForeground"
+        android:textSize="24sp"/>
+
+</RelativeLayout>
+</xmp></pre>
+<p><b>activity_edit.xml</b></p>
+<pre><xmp>< ?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.anuprathore.texteditor.MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/title"
+        android:background="#FFE0DBBE"
+        android:ems="10"
+        android:gravity="top|start"
+        android:hint="Note Here"
+        android:inputType="textMultiLine"
+        android:lineSpacingExtra="8sp"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textColor="#FF945003"/>
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:text="Delete"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/delete"
+        android:layout_alignBottom="@+id/delete"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="27dp"
+        android:text="Save"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:background="#FFCFC68B"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingVertical="5dp"
+        android:text="New Note"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor=" ?android:attr/colorForeground"
+        android:textSize="24sp"
+        android:visibility="visible"/>
+
+
+</RelativeLayout>
+</xmp></pre>
+<p><b>activity_new.xml</b></p>
+<pre><xmp>< ?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.anuprathore.texteditor.MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/title"
+        android:background="#FFE0DBBE"
+        android:ems="10"
+        android:gravity="top|start"
+        android:hint="Note Here"
+        android:inputType="textMultiLine"
+        android:lineSpacingExtra="8sp"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textColor="#FF945003"/>
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:text="Cancel"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/delete"
+        android:layout_alignBottom="@+id/delete"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="27dp"
+        android:text="Save"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:background="#FFCFC68B"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingVertical="5dp"
+        android:text="New Note"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor=" ?android:attr/colorForeground"
+        android:textSize="24sp"
+        android:visibility="visible"/>
+
+
+</RelativeLayout>
+</xmp></pre>
+	<a href="/home" id="prev">Previous</a>
+	<a href="/notepad/2" id="next">Next</a>
+</div>
+	</div>
+	<div class="container-fluid bg-3 text-center">
+	    <!-- <div class="container"> -->
+	    	<div class="row">
+	    		<h2>More Posts</h2>
+				<div class="col-sm-3">
+					<a href="/musicplayer/1">
+					<img src="/images/android.jpg" class="img-circle" alt="aksr">
+					<h3>Music Player</h3>
+					<h4><p>By this tutorial you will learn to make an offline music player app using basic android file system.</p></h4>
+				</a>
+				</div>
+				<!-- <div class="col-xs-2">
+					<a href="music_player.html">
+					<img src="android.jpg" class="img-circle" alt="aksr">
+					<h3>Music Player</h3>
+					<h4><p>By this tutorial you will learn to make an offline music player app using basic android file system.</p></h4>
+				</a>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
+<!-- </div> -->
+
+  	<div class="container-fluid bg-2">
+	    <div class="container">
+	      <form class="form" autocomplete="on" action="">
+	        <div class="form-group">
+	          <div class="col-sm-6">
+	            <label><h2><u>Leave Your Comments</u>:</h2></label>
+	              <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://aksr-co-nf.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/ ?ref_noscript">comments powered by Disqus.</a></noscript>
+	          </div>
+	        <!-- <div class="col-xs-4">
+	          <label><h2><u>Subscribe Us</u>:</h2></label>
+	          <br>
+	            <label><h3>E-Mail:</h3></label>
+	            <input type="text" class="form-control" name="" placeholder="E-mail Address">   
+	            <br>
+	           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-send"></span> Subscribe</button>
+	           </div> -->
+	        </div>
+	      </form>
+	    </div>
+		</div>
+
+	<footer class="text-center">
+        <div id="contact">
+          <a class="up-arrow" href="#" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </a><br>
+          <p><h2>Contact Us</h2>anupsingh.singh93@gmail.com</p> 
+        </div>
+    </footer>
+		<div id="copyright"><p>AKSR © Copyright 2018,All rights reserved.</p></div>
+		<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		})
+		</script>
+        <script id="dsq-count-scr" src="//aksr-co-nf.disqus.com/count.js" async></script>	
+	</body>
+</html>

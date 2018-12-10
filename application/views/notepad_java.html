@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>aksblogs</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="rgb(255, 0, 102)">
+		<meta name="Keywords" content="Notepad,android app,android studio,notepad,sqlite,SQLite,XML,Android,Java,Web development,tutorials,programming,training,learning,primer,lessons,references,examples,source code,demos,tips">
+		<meta name="Description" content="Well organized and easy to understand Web building tutorials with lots of examples of how to use android studio,java,SQLite,sqlite,android and XML.">
+        <link rel="icon" type="image/png" href="/favicon.png">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/css/blog.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/aksblogs.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-color: rgb(255, 0, 102);border: rgb(255, 0, 102);">
+			<div class="container-fluid">
+		    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		     </button>
+            <ul class="logo">
+                <li><a href="">Aks</a></li>
+            </ul>
+            </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		    <div class="navbar-right">
+		      <ul class="nav ">
+		        <li><a href="/home"><span class="glyphicon glyphicon-home"> Home</a></li>
+        <li class="drop"><a href="javascript:void(0)"><span class="glyphicon glyphicon-pencil"> Blogs</a>
+          <div class="dropdown-content">
+            <a href="/home#android" style="padding: 10px ! important;">Android</a>
+            <!-- <a href="#" style="padding: 10px ! important;">Django</a> -->
+            <!-- <a href="#" style="padding: 10px ! important;">ML</a> -->
+          </div>
+        </li>
+        <li><a href="#contact"><span class="glyphicon glyphicon-user"> Contact</a></li>
+        <li><a href=" /signup"><span class="glyphicon glyphicon-pushpin"> About</a></li>  
+        <li><a href=" /signup"><span class="glyphicon glyphicon-send"> Subscribe</a></li> 
+		      </ul>
+		  	</div>
+		  </div>
+		</div>
+		  </nav>
+
+		<div class="sticky-container">
+		    <ul class="sticky">
+		        <li>
+		            <a href="#"><img src="/images/facebook.png" width="32" height="32"></a>
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/twitter.jpg" width="32" height="32"></a>            
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/google.png" width="32" height="32"></a>
+		        </li>
+		        <li>
+		            <a href="#"><img src="/images/linkedin.jpg" width="32" height="32"></a>
+		        </li>
+		    </ul>
+		</div>
+
+
+		 <div class="container-fluid bg-1">
+		  <!-- <div class="container"> -->
+		  <div class="col-sm-1"></div>
+		<div class="col-sm-10">
+		<div class="jumbotron">
+		<img src="/images/android.jpg" class="img-circle" alt="aksr" style="float: left; margin: 0px 5px 5px 5px;">
+		  <h3>Notepad App</h3>
+		  <h4><p>We Are Future Engineers and tech lovers,We love to share our knowledge with everyone.This is our Blog and we try to solve the small problems by sharing knowledge with you all.</p></h4>
+
+		</div>
+		</div>
+	</div>
+		<div class="container-fluid content bg-1">
+		  <div class="col-sm-1"></div>
+		<div class="col-sm-8">
+			<div class="jumbotron">
+<!-- <center><h2>About</h2></center><br><br> -->
+<p>Hello Guys, In this tutorial ,we are going to learn how to create a Simple music player Application.
+
+This Tutorial will contain tha following files in our project.
+<br>
+1. MainActivity.java<br>
+2. EditActivity.java<br>
+3. NewActivity.java<br>
+4. DisplayActivity.java<br>
+5. Database.java<br>
+
+<br></p>
+<p><b>MainActivity.java</b></p>
+<div>
+	<pre><xmp>package com.example.anuprathore.texteditor;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    Database db;
+    ArrayList<String> id_list;
+    ArrayList<String> t_list;
+    ArrayList<String> title_list;
+    ListView listView;
+    TextView addNew;
+    Intent intent;
+    Intent intent1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+        db=new Database(this);
+        listView= findViewById(R.id.list);
+        intent = new Intent(this, DisplayActivity.class);
+        intent1 = new Intent(this, NewActivity.class);
+        addNew = findViewById(R.id.add);
+        title_list=new ArrayList<>();
+        id_list=new ArrayList<>();
+        t_list=new ArrayList<>();
+        
+        final Cursor data = db.getHeading();
+            if (data.getCount() == 0) {
+                Toast.makeText(MainActivity.this, "No items found", Toast.LENGTH_SHORT).show();
+                }
+            else {
+                while ((data.moveToNext())) {
+                    title_list.add(data.getString(data.getColumnIndex("TITLE")));
+                    id_list.add(data.getString(data.getColumnIndex("ID")));
+                    t_list.add(data.getString(data.getColumnIndex("TIME")));
+                }
+                    ListAdapter listAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,title_list);
+                    listView.setAdapter(listAdapter);
+//                Toast.makeText(MainActivity.this, "timelist "+t_list.get(0),Toast.LENGTH_SHORT).show();
+            }
+
+
+        addNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View v) {
+                startActivity(intent1);
+            }
+        });
+
+       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView <> parent, View view, int position, long id) {
+                intent.putExtra("heading", listView.getItemAtPosition(position).toString());
+                int x=(int)id;
+//                Toast.makeText(MainActivity.this, "list "+String.valueOf(id_list.get(x)), Toast.LENGTH_SHORT).show();
+                intent.putExtra("id",String.valueOf(id_list.get(x)));
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode==KeyEvent.KEYCODE_BACK)
+        {
+           Intent intent=new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            db.close();
+            return true;
+        }
+        return false;
+    }
+
+}
+</xmp></pre>
+</div>
+<p><b>DisplayActivity.java</b></p>
+<pre><xmp>package com.example.anuprathore.texteditor;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    Database db;
+    ArrayList<String> id_list;
+    ArrayList<String> t_list;
+    ArrayList<String> title_list;
+    ListView listView;
+    TextView addNew;
+    Intent intent;
+    Intent intent1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+        db=new Database(this);
+        listView= findViewById(R.id.list);
+        intent = new Intent(this, DisplayActivity.class);
+        intent1 = new Intent(this, NewActivity.class);
+        addNew = findViewById(R.id.add);
+        title_list=new ArrayList<>();
+        id_list=new ArrayList<>();
+        t_list=new ArrayList<>();
+        
+        final Cursor data = db.getHeading();
+            if (data.getCount() == 0) {
+                Toast.makeText(MainActivity.this, "No items found", Toast.LENGTH_SHORT).show();
+                }
+            else {
+                while ((data.moveToNext())) {
+                    title_list.add(data.getString(data.getColumnIndex("TITLE")));
+                    id_list.add(data.getString(data.getColumnIndex("ID")));
+                    t_list.add(data.getString(data.getColumnIndex("TIME")));
+                }
+                    ListAdapter listAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,title_list);
+                    listView.setAdapter(listAdapter);
+//                Toast.makeText(MainActivity.this, "timelist "+t_list.get(0),Toast.LENGTH_SHORT).show();
+            }
+
+
+        addNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View v) {
+                startActivity(intent1);
+            }
+        });
+
+       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<> parent, View view, int position, long id) {
+                intent.putExtra("heading", listView.getItemAtPosition(position).toString());
+                int x=(int)id;
+//                Toast.makeText(MainActivity.this, "list "+String.valueOf(id_list.get(x)), Toast.LENGTH_SHORT).show();
+                intent.putExtra("id",String.valueOf(id_list.get(x)));
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode==KeyEvent.KEYCODE_BACK)
+        {
+           Intent intent=new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            db.close();
+            return true;
+        }
+        return false;
+    }
+
+}
+</xmp></pre>
+<p><b>EditActivity.java</b></p>
+<pre><xmp>package com.example.anuprathore.texteditor;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class EditActivity extends AppCompatActivity {
+
+    Database db;
+    TextView save;
+    EditText data;
+    EditText title;
+    Intent intent;
+    String heading;
+    String id;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit);
+        db= new Database(this);
+
+        save = findViewById(R.id.save);
+        data = findViewById(R.id.data);
+        title = findViewById(R.id.title);
+        intent = new Intent(this,MainActivity.class);
+
+        Bundle bundleEdit=getIntent().getExtras();
+        assert bundleEdit!=null;
+        heading = bundleEdit.getString("TITLE");
+        String note=bundleEdit.getString("NOTE");
+        id = bundleEdit.getString("ID");
+        title.setText(heading);
+        data.setText(note);
+        data.setSelection(data.getText().length());
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long res = db.updatedata(id,heading,title.getText().toString(),data.getText().toString());
+                if(res==-1){
+                    Toast.makeText(EditActivity.this,"Data not updated!",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(EditActivity.this,"Data is updated!",Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+}
+
+</xmp></pre>
+<p><b>NewActivity.java</b></p>
+<pre><xmp>package com.example.anuprathore.texteditor;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+public class NewActivity extends AppCompatActivity {
+
+    Database db;
+    TextView cancel;
+    TextView save;
+    EditText data;
+    EditText title;
+    Intent intent;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new);
+        db= new Database(this);
+        cancel= findViewById(R.id.delete);
+        save= findViewById(R.id.save);
+        data= findViewById(R.id.data);
+        title= findViewById(R.id.title);
+        intent=new Intent(this,MainActivity.class);
+        save.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String heading = title.getText().toString();
+                String note = data.getText().toString();
+                long res;
+                if (!note.isEmpty()) {
+                    res = db.insertdata(heading, note);
+                    Toast.makeText(NewActivity.this, "Note Saved.", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    if (res == -1) {
+                        Toast.makeText(NewActivity.this, "Cannot Save.Something went wrong.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(NewActivity.this, "Oops you forgot to write something!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+
+    }
+}
+</xmp></pre>
+<p><b>Database.java</b></p>
+<pre><xmp>package com.example.anuprathore.texteditor;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+//User defined class name 'Database' inheriting buildin class SQLiteOpenHelper
+public  class Database extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME= "aksr.db";
+    private static final String TABLE_NAME="notes";
+    private static final int DATABASE_VERSION=1;
+    //Database version needs to be incremented as per modification in schema of database 
+
+    Database(Context context) {//constructor of class
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        SQLiteDatabase db=this.getWritableDatabase();
+    }
+
+    //This method executes only once on creation of database
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE VARCHAR(50),NOTE VARCHAR(500), TIME DATETIME DEFAULT CURRENT_TIMESTAMP)");
+    }
+
+    //This method executes on upgrading the database
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        onCreate(db);
+    }
+
+    //Function to insert heading and note in database
+    long insertdata(String title, String data){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues content=new ContentValues();
+        content.put("TITLE",title);
+        content.put("NOTE",data);
+        long result =db.insert(TABLE_NAME,null,content);
+        db.close();
+        return result;
+    }
+
+    //Cursor contains the result of the query
+    //This method is used to fetch the title,timestamp and auto incremented 
+    //integer value from the database. 
+	Cursor getHeading(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String[] columns={"ID","TITLE","TIME"};
+        return db.query(TABLE_NAME,columns,null,null,null,null,"ID DESC");
+	}
+
+	//This method fetches all the values from the database.
+    Cursor getData(String id,String title){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String[] columns={"ID","TITLE","NOTE","TIME"};
+        String where="ID = ? AND TITLE = ?";
+        String[] whereArgs=new String[]{id,title};
+        return db.query(TABLE_NAME,columns,where,whereArgs,null,null,null);
+    }
+
+    //This method is used to update the database by using id and title.
+    //This method returns an integer value if it will be unsuccessful it will return -1
+    long updatedata(String id,String title,String newTitle,String newNote){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues content=new ContentValues();
+        content.put("TITLE",newTitle);
+        content.put("NOTE",newNote);
+        String where="ID = ? AND TITLE = ?";//Each value of '?' will be replaced by 
+        String[] whereArgs=new String[]{id,title};//respective string items from whereArgs
+        return db.update(TABLE_NAME,content,where,whereArgs);
+    }
+
+    //This method helps in implementing delete operation of notes
+    //This method returns an integer value if it will be unsuccessful it will return -1
+    long deletedata(String id,String title){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String where="ID = ? AND TITLE = ?";
+        String[] whereArgs=new String[]{id,title};
+        long res=db.delete(TABLE_NAME,where,whereArgs);
+        db.close();
+        return res;
+    }
+}</xmp></pre>
+
+	<a href="/notepad/1" id="prev">Previous</a>
+	<a href="/musicplayer/1" id="next">Next</a>
+</div>
+	</div>
+	<div class="container-fluid bg-3 text-center">
+	    <!-- <div class="container"> -->
+	    	<div class="row">
+	    		<h2>More Posts</h2>
+				<div class="col-sm-3">
+					<a href="/musicplayer/1">
+					<img src="/images/android.jpg" class="img-circle" alt="aksr">
+					<h3>Music Player</h3>
+					<h4><p>By this tutorial you will learn to make an offline music player app using basic android file system.</p></h4>
+				</a>
+				</div>
+				<!-- <div class="col-xs-2">
+					<a href="music_player.html">
+					<img src="android.jpg" class="img-circle" alt="aksr">
+					<h3>Music Player</h3>
+					<h4><p>By this tutorial you will learn to make an offline music player app using basic android file system.</p></h4>
+				</a>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
+<!-- </div> -->
+
+  	<div class="container-fluid bg-2">
+	    <div class="container">
+	      <form class="form" autocomplete="on" action="">
+	        <div class="form-group">
+	          <div class="col-sm-6">
+	            <label><h2><u>Leave Your Comments</u>:</h2></label>
+	              <div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://aksr-co-nf.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript> <a href="https://disqus.com/?ref_noscript"></a></noscript>
+	          </div>
+	        <!-- <div class="col-xs-4">
+	          <label><h2><u>Subscribe Us</u>:</h2></label>
+	          <br>
+	            <label><h3>E-Mail:</h3></label>
+	            <input type="text" class="form-control" name="" placeholder="E-mail Address">   
+	            <br>
+	           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-send"></span> Subscribe</button>
+	           </div> -->
+	        </div>
+	      </form>
+	    </div>
+		</div>
+
+	<footer class="text-center">
+        <div id="contact">
+          <a class="up-arrow" href="#" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </a><br>
+          <p><h2>Contact Us</h2>anupsingh.singh93@gmail.com</p> 
+        </div>
+    </footer>
+		<div id="copyright"><p>AKSR © Copyright 2018,All rights reserved.</p></div>
+		<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		})
+		</script>	
+        <script id="dsq-count-scr" src="//aksr-co-nf.disqus.com/count.js" async></script>
+	</body>
+</html>
